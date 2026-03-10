@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Sudoku Scanner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f0f11;
+      --surface: #17171a;
+      --border: #2a2a2e;
+      --accent: #4f9eff;
+      --accent2: #7ee8a2;
+      --text: #e8e8ed;
+      --muted: #888897;
+      --serif: 'DM Serif Display', Georgia, serif;
+      --sans: 'DM Sans', system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-weight: 300;
+      line-height: 1.8;
+      min-height: 100vh;
+    }
+
+    /* ── header ── */
+    header {
+      position: relative;
+      overflow: hidden;
+      padding: 80px 24px 64px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 60% at 50% 0%, rgba(79,158,255,.18) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 80% 80%, rgba(126,232,162,.10) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .app-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 6px 16px 6px 8px;
+      margin-bottom: 28px;
+      font-size: .78rem;
+      letter-spacing: .06em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+    .app-badge span.dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--accent2);
+      display: inline-block;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity: 1; }
+      50%      { opacity: .4; }
+    }
+    h1 {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 6vw, 3.4rem);
+      font-weight: 400;
+      letter-spacing: -.01em;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+    h1 em { font-style: normal; color: var(--accent); }
+    .subtitle {
+      font-size: .9rem;
+      color: var(--muted);
+      letter-spacing: .02em;
+    }
+
+    /* ── lang tabs ── */
+    .lang-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      padding: 28px 24px 0;
+    }
+    .lang-btn {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 8px 24px;
+      border-radius: 999px;
+      font-family: var(--sans);
+      font-size: .85rem;
+      cursor: pointer;
+      transition: all .2s;
+      letter-spacing: .04em;
+    }
+    .lang-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+    .lang-btn:hover:not(.active) {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* ── content ── */
+    main {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+    .lang-section { display: none; }
+    .lang-section.active { display: block; }
+
+    /* ── section card ── */
+    .section {
+      margin-bottom: 12px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--surface);
+    }
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 20px 24px;
+      cursor: pointer;
+      user-select: none;
+      transition: background .15s;
+    }
+    .section-header:hover { background: rgba(255,255,255,.03); }
+    .section-num {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      color: var(--accent);
+      min-width: 28px;
+      line-height: 1;
+    }
+    .section-title {
+      flex: 1;
+      font-size: .95rem;
+      font-weight: 500;
+      letter-spacing: .02em;
+    }
+    .chevron {
+      color: var(--muted);
+      font-size: .7rem;
+      transition: transform .2s;
+    }
+    .section.open .chevron { transform: rotate(180deg); }
+    .section-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .3s ease;
+    }
+    .section.open .section-body { max-height: 1000px; }
+    .section-inner {
+      padding: 0 24px 24px;
+      font-size: .88rem;
+      color: #bbbbc8;
+      border-top: 1px solid var(--border);
+      padding-top: 18px;
+    }
+    .section-inner p { margin-bottom: 12px; }
+    .section-inner p:last-child { margin-bottom: 0; }
+    .section-inner ul {
+      padding-left: 18px;
+      margin-bottom: 12px;
+    }
+    .section-inner li { margin-bottom: 6px; }
+    .section-inner a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .section-inner a:hover { text-decoration: underline; }
+    .tag {
+      display: inline-block;
+      background: rgba(79,158,255,.12);
+      border: 1px solid rgba(79,158,255,.25);
+      color: var(--accent);
+      font-size: .72rem;
+      padding: 2px 8px;
+      border-radius: 4px;
+      letter-spacing: .04em;
+      margin-right: 6px;
+      font-weight: 500;
+    }
+
+    /* ── effective date banner ── */
+    .effective-banner {
+      background: rgba(126,232,162,.07);
+      border: 1px solid rgba(126,232,162,.2);
+      border-radius: 8px;
+      padding: 12px 18px;
+      font-size: .82rem;
+      color: var(--accent2);
+      margin-bottom: 28px;
+      letter-spacing: .02em;
+    }
+
+    /* ── contact card ── */
+    .contact-card {
+      margin-top: 32px;
+      background: linear-gradient(135deg, rgba(79,158,255,.08), rgba(126,232,162,.06));
+      border: 1px solid rgba(79,158,255,.2);
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+    }
+    .contact-card p { font-size: .88rem; color: var(--muted); margin-bottom: 8px; }
+    .contact-card strong { color: var(--text); font-weight: 500; }
+
+    /* ── footer ── */
+    footer {
+      text-align: center;
+      padding: 24px;
+      font-size: .78rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      letter-spacing: .03em;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="app-badge"><span class="dot"></span>Shino Studio</div>
+  <h1>Privacy <em>Policy</em><br>プライバシーポリシー</h1>
+  <p class="subtitle">Sudoku Scanner — com.shinostudio.sudokuscanner</p>
+</header>
+
+<div class="lang-tabs">
+  <button class="lang-btn active" onclick="setLang('en')">English</button>
+  <button class="lang-btn" onclick="setLang('ja')">日本語</button>
+</div>
+
+<main>
+
+  <!-- ===== ENGLISH ===== -->
+  <div class="lang-section active" id="sec-en">
+    <div class="effective-banner">
+      Effective date: June 1, 2025 &nbsp;·&nbsp; Last updated: June 1, 2025
+    </div>
+
+    <div class="section open">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-num">1</span>
+        <span class="section-title">Introduction</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body"><div class="section-inner">
+        <p>Shino Studio ("we", "us", or "our") operates the <strong>Sudoku Scanner</strong> mobile application (the "App"). This Privacy Policy explains how we collect, use, and share information when you use our App.</p>
+        <p>By using the App, you agree to the collection and use of information in accordance with this policy.</p>
+      </div></div>
+    </div>
+
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-num">2</span>
+        <span class="section-title">Information We Collect</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body"><div class="section-inner">
+        <p><span class="tag">Camera</span> The App uses your device camera solely to capture images of Sudoku puzzles for recognition. Images are processed entirely on-device and are <strong>never uploaded to any server</strong>.</p>
+        <p><span class="tag">App Usage</span> We store a local usage counter (number of puzzles solved) on your device to control the timing of advertisements. This data never leaves your device.</p>
+        <p><span class="tag">Language</span> Your language preference is saved locally on your device.</p>
+        <p>We do <strong>not</strong> collect names, email addresses, location data, or any personally identifiable information.</p>
+      </div></div>
+    </div>
+
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-num">3</span>
+        <span class="section-title">Advertising (Google AdMob)</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body"><div class="section-inner">
+        <p>The App uses <strong>Google AdMob</strong> to display advertisements. AdMob may collect and use certain data to provide personalized ads, including:</p>
+        <ul>
+          <li>Device advertising ID</li>
+          <li>IP address</li>
+          <li>Device type and operating system version</li>
+          <li>App interaction data</li>
+        </ul>
+        <p>This data is collected and processed by Google in accordance with Google's Privacy Policy:<br>
+        <a href="https://policies.google.com/privacy" target="_blank">https://policies.google.com/privacy</a></p>
+        <p>For information on how Google uses data from apps that use its services:<br>
+        <a href="https://policies.google.com/technologies/partner-sites" target="_blank">https://policies.google.com/technologies/partner-sites</a></p>
+      </div></div>
+    </div>
+
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-num">4</span>
+        <span class="section-title">How We Use Information</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body"><div class="section-inner">
+        <p>We use the information as follows:</p>
+        <ul>
+          <li>Camera images — to recognize digits in Sudoku puzzles (on-device only)</li>
+          <li>Usage counter — to determine when to show interstitial advertisements</li>
+          <li>Language preference — to display the App in your preferred language</li>
+        </ul>
+        <p>We do not sell, trade, or transfer your data to third parties, except as described in Section 3 (AdMob).</p>
+      </div></div>
+    </div>
+
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-num">5</span>
+        <span class="section-title">Data Retention &amp; Deletion</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body"><div class="section-inner">
+        <p>All data stored by the App (usage counter, language setting) resides locally on your device. It is automatically deleted when you uninstall the App. Camera images are never stored persistently.</p>
+      </div></div>
+    </div>
+
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-num">6</span>
+        <span class="section-title">Children's Privacy</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body"><div class="section-inner">
+        <p>The App is not directed to children under the age of 13. We do not knowingly collect personal information from children under 13. If you believe a child has provided us with personal information, please contact us so we can take appropriate action.</p>
+      </div></div>
+    </div>
+
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-num">7</span>
+        <span class="section-title">Changes to This Policy</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body"><div class="section-inner">
+        <p>We may update this Privacy Policy from time to time. Changes will be posted on this page with an updated effective date. Continued use of the App after changes constitutes your acceptance of the revised policy.</p>
+      </div></div>
+    </div>
+
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-num">8</span>
+        <span class="section-title">Contact Us</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body"><div class="section-inner">
+        <p>If you have questions or concerns about this Privacy Policy, please contact us via the Google Play Store developer page for Sudoku Scanner.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- ===== 日本語 ===== -->
+  <div class="lang-section" id="sec-ja">
+    <div class="effective-banner">
+      施行日：2025年6月1日 &nbsp;·&nbsp; 最終更新：2025年6月1日
+    </div>
+
+    <div class="section open">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-num">1</span>
+        <span class="section-title">はじめに</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body"><div class="section-inner">
+        <p>Shino Studio（以下「当社」）は、モバイルアプリケーション「<strong>ナンプレスキャナー（Sudoku Scanner）</strong>」（以下「本アプリ」）を運営しています。本プライバシーポリシーは、本アプリのご利用時に当社が収集・使用・共有する情報について説明します。</p>
+        <p>本アプリをご利用いただくことで、本ポリシーに基づく情報の収集・利用に同意したものとみなされます。</p>
+      </div></div>
+    </div>
+
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-num">2</span>
+        <span class="section-title">収集する情報</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body"><div class="section-inner">
+        <p><span class="tag">カメラ</span> 本アプリは、数独パズルの数字認識のためにのみカメラを使用します。撮影した画像は端末内でのみ処理され、<strong>外部のサーバーには一切送信されません。</strong></p>
+        <p><span class="tag">利用回数</span> 広告の表示タイミングを管理するため、解答回数のカウンターを端末内に保存します。このデータが端末外に送信されることはありません。</p>
+        <p><span class="tag">言語設定</span> 選択した表示言語の設定を端末内に保存します。</p>
+        <p>氏名・メールアドレス・位置情報など、個人を特定できる情報は<strong>一切収集しません。</strong></p>
+      </div></div>
+    </div>
+
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-num">3</span>
+        <span class="section-title">広告（Google AdMob）</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body"><div class="section-inner">
+        <p>本アプリは広告配信に <strong>Google AdMob</strong> を使用しています。AdMobはパーソナライズ広告の提供のため、以下のデータを収集・利用する場合があります。</p>
+        <ul>
+          <li>デバイスの広告ID</li>
+          <li>IPアドレス</li>
+          <li>デバイスの種類およびOSバージョン</li>
+          <li>アプリの操作データ</li>
+        </ul>
+        <p>これらのデータはGoogleのプライバシーポリシーに基づいて収集・処理されます：<br>
+        <a href="https://policies.google.com/privacy" target="_blank">https://policies.google.com/privacy</a></p>
+        <p>Googleがアプリ提供者のサービスからデータを利用する方法の詳細：<br>
+        <a href="https://policies.google.com/technologies/partner-sites" target="_blank">https://policies.google.com/technologies/partner-sites</a></p>
+      </div></div>
+    </div>
+
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-num">4</span>
+        <span class="section-title">情報の利用目的</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body"><div class="section-inner">
+        <p>収集した情報は以下の目的にのみ使用します。</p>
+        <ul>
+          <li>カメラ画像 — 数独パズルの数字認識（端末内処理のみ）</li>
+          <li>利用回数カウンター — 全画面広告の表示タイミングの制御</li>
+          <li>言語設定 — アプリの表示言語の切り替え</li>
+        </ul>
+        <p>第3条（AdMob）に記載の場合を除き、お客様の情報を第三者に販売・譲渡・共有することはありません。</p>
+      </div></div>
+    </div>
+
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-num">5</span>
+        <span class="section-title">データの保存と削除</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body"><div class="section-inner">
+        <p>本アプリが保存するすべてのデータ（利用回数・言語設定）は、お使いの端末内にのみ保存されます。アプリをアンインストールすると自動的に削除されます。カメラ画像は永続的に保存されることはありません。</p>
+      </div></div>
+    </div>
+
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-num">6</span>
+        <span class="section-title">お子様のプライバシー</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body"><div class="section-inner">
+        <p>本アプリは13歳未満のお子様を対象としていません。13歳未満のお子様から意図的に個人情報を収集することはありません。お子様が個人情報を提供したと思われる場合は、当社までご連絡ください。</p>
+      </div></div>
+    </div>
+
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-num">7</span>
+        <span class="section-title">ポリシーの変更</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body"><div class="section-inner">
+        <p>本プライバシーポリシーは必要に応じて更新されることがあります。変更があった場合は、このページに最新の施行日とともに掲載します。変更後も本アプリを継続してご利用いただいた場合、改定されたポリシーに同意したものとみなされます。</p>
+      </div></div>
+    </div>
+
+    <div class="section">
+      <div class="section-header" onclick="toggle(this)">
+        <span class="section-num">8</span>
+        <span class="section-title">お問い合わせ</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="section-body"><div class="section-inner">
+        <p>本プライバシーポリシーに関するご質問・ご不明な点は、Google Play ストアの「ナンプレスキャナー」開発者ページよりお問い合わせください。</p>
+      </div></div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  © 2025 Shino Studio &nbsp;·&nbsp; Sudoku Scanner
+</footer>
+
+<script>
+  function setLang(lang) {
+    document.querySelectorAll('.lang-section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('sec-' + lang).classList.add('active');
+    event.target.classList.add('active');
+  }
+  function toggle(header) {
+    header.parentElement.classList.toggle('open');
+  }
+  // open all sections by default
+  document.querySelectorAll('.section').forEach(s => s.classList.add('open'));
+</script>
+</body>
+</html>
