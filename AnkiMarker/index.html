@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>プライバシーポリシー — 暗記マーカー (AnkiMarker)</title>
+  <style>
+    /* ── ベース ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #F7F4EE;
+      --surface:   #FBF9F4;
+      --border:    #D4C9B5;
+      --primary:   #1A8754;
+      --primary-d: #126B41;
+      --text:      #1D1F1A;
+      --subtext:   #4B4E46;
+      --green:     #5FC28A;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Helvetica Neue", "Hiragino Kaku Gothic ProN", "Hiragino Sans",
+                   "Yu Gothic", Meiryo, sans-serif;
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    header {
+      background: var(--primary);
+      color: #fff;
+      padding: 40px 24px 32px;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: .03em;
+      margin-bottom: 6px;
+    }
+    header p {
+      font-size: .875rem;
+      opacity: .85;
+    }
+
+    main {
+      max-width: 780px;
+      margin: 36px auto 60px;
+      padding: 0 20px;
+    }
+
+    section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-bottom: 24px;
+    }
+
+    section h2 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--primary);
+      border-left: 4px solid var(--primary);
+      padding-left: 12px;
+      margin-bottom: 16px;
+    }
+
+    p { margin-bottom: 12px; }
+    p:last-child { margin-bottom: 0; }
+
+    ul, ol {
+      padding-left: 1.5em;
+      margin-bottom: 12px;
+    }
+    li { margin-bottom: 6px; }
+    li:last-child { margin-bottom: 0; }
+
+    .table-wrap { overflow-x: auto; margin-bottom: 12px; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .9rem;
+    }
+    th {
+      background: var(--primary);
+      color: #fff;
+      font-weight: 700;
+      padding: 10px 14px;
+      text-align: left;
+    }
+    td {
+      padding: 9px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) td { background: #F0EBE0; }
+
+    .badge {
+      display: inline-block;
+      background: var(--green);
+      color: #fff;
+      font-size: .75rem;
+      font-weight: 700;
+      border-radius: 20px;
+      padding: 2px 10px;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+    .note {
+      background: #E9F3EC;
+      border-left: 4px solid var(--primary);
+      border-radius: 0 8px 8px 0;
+      padding: 10px 14px;
+      font-size: .875rem;
+      color: var(--subtext);
+      margin-top: 10px;
+    }
+
+    footer {
+      text-align: center;
+      font-size: .8rem;
+      color: var(--subtext);
+      padding-bottom: 32px;
+    }
+
+    @media (max-width: 600px) {
+      section { padding: 20px 18px; }
+      header h1 { font-size: 1.3rem; }
+      th, td { padding: 8px 10px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>プライバシーポリシー</h1>
+  <p>暗記マーカー (AnkiMarker) &nbsp;|&nbsp; 最終更新日：2026年5月4日</p>
+</header>
+
+<main>
+
+  <section>
+    <h2>1. はじめに</h2>
+    <p>
+      本プライバシーポリシーは、アプリ「<strong>暗記マーカー (AnkiMarker)</strong>」（以下「本アプリ」）の開発者（以下「開発者」）が、
+      ユーザーの個人情報をどのように取り扱うかを説明するものです。
+    </p>
+    <p>
+      本アプリをご利用いただくことで、本ポリシーに同意したものとみなします。
+      ポリシーの内容に同意いただけない場合は、本アプリの使用をお控えください。
+    </p>
+  </section>
+
+  <section>
+    <h2>2. 収集する情報</h2>
+
+    <p><span class="badge">アプリ本体</span>開発者が収集・保存する情報</p>
+    <p>
+      本アプリは取り込んだ画像・マーカー・学習履歴などを
+      <strong>端末内のアプリ専用ストレージにのみ</strong>保存します。
+      これらのデータが開発者のサーバーや外部に送信されることは一切ありません。
+    </p>
+    <ul>
+      <li>取り込んだ教材ページの画像（WebP 形式で内部保存）</li>
+      <li>書籍タイトル・ページタイトル・表紙画像</li>
+      <li>OCR で検出された文字領域（座標・テキスト）</li>
+      <li>マーカー（塗りつぶし範囲・色）</li>
+      <li>自己採点の解答履歴（直近5回）・苦手判定の根拠データ</li>
+      <li>テーマ（ライト／ダーク）・画質設定・ガイド表示設定などのアプリ設定</li>
+    </ul>
+    <div class="note">
+      上記のデータはすべてお使いの端末のアプリ専用領域にのみ保存され、他のアプリからアクセスできません。
+      アプリをアンインストールするとすべて削除されます。アカウント登録・クラウド同期は行いません。
+    </div>
+
+    <p style="margin-top:16px;"><span class="badge">OCR</span>文字認識のために使用する情報</p>
+    <p>
+      本アプリは取り込んだ画像から文字を検出するために
+      Google ML Kit のテキスト認識（日本語・ラテン文字）を使用します。
+      画像処理は<strong>すべて端末上で実行</strong>され、画像や認識結果が外部サーバーに送信されることはありません。
+    </p>
+    <p>
+      ただし、初回利用時に ML Kit の認識モデルを Google Play 開発者サービス経由でダウンロードする場合があります。
+      この際の通信は Google 社のプライバシーポリシーに従います。
+    </p>
+
+    <p style="margin-top:16px;"><span class="badge">広告 SDK</span>Google AdMob が収集する情報</p>
+    <p>
+      本アプリは広告配信のために Google AdMob（Google LLC）を使用しています。
+      AdMob は以下の情報を収集・利用することがあります。
+    </p>
+    <div class="table-wrap">
+      <table>
+        <tr><th>収集される情報</th><th>目的</th></tr>
+        <tr><td>広告識別子（GAID）</td><td>関連性の高い広告の配信・広告効果測定</td></tr>
+        <tr><td>IPアドレス</td><td>おおまかな地域に基づく広告配信</td></tr>
+        <tr><td>デバイス情報（OS バージョン・機種名など）</td><td>広告フォーマットの最適化</td></tr>
+        <tr><td>アプリの使用状況</td><td>広告パフォーマンスの分析</td></tr>
+      </table>
+    </div>
+    <p>
+      詳細は Google のプライバシーポリシー
+      （<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">https://policies.google.com/privacy</a>）
+      をご確認ください。
+      端末の設定から広告識別子のリセットや追跡のオプトアウトが可能です。
+    </p>
+  </section>
+
+  <section>
+    <h2>3. アプリが要求する権限</h2>
+    <div class="table-wrap">
+      <table>
+        <tr><th>権限</th><th>用途</th></tr>
+        <tr>
+          <td>カメラ（CAMERA）</td>
+          <td>教材ページを撮影して取り込むため。撮影した画像は端末内にのみ保存されます。</td>
+        </tr>
+        <tr>
+          <td>インターネット（INTERNET）</td>
+          <td>広告配信、および ML Kit テキスト認識モデルの初回ダウンロード</td>
+        </tr>
+        <tr>
+          <td>ネットワーク状態の確認（ACCESS_NETWORK_STATE）</td>
+          <td>広告 SDK が通信状態を確認するため</td>
+        </tr>
+      </table>
+    </div>
+    <p>
+      ギャラリーから画像を選択する場合は Android のフォトピッカー API を経由するため、
+      ストレージへのフルアクセス権限は要求しません。
+      選択された画像のみが本アプリに渡されます。
+    </p>
+    <div class="note">これらの権限はアプリ機能の提供にのみ使用され、個人を特定する情報の収集には使用しません。</div>
+  </section>
+
+  <section>
+    <h2>4. 情報の利用目的</h2>
+    <p>収集した情報は以下の目的にのみ利用します。</p>
+    <ul>
+      <li>教材画像の取り込み・編集・マーカー機能の提供</li>
+      <li>暗記学習・自己採点・苦手判定機能の提供</li>
+      <li>アプリの不具合調査および品質向上</li>
+      <li>広告の配信および広告効果の測定（AdMob 経由）</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>5. 第三者への情報提供</h2>
+    <p>
+      開発者はユーザーの個人情報を第三者に販売・貸与することはありません。
+      ただし、以下の場合には情報を共有することがあります。
+    </p>
+    <ul>
+      <li>ユーザーの同意がある場合</li>
+      <li>法令に基づき開示が必要な場合</li>
+      <li>サービス提供に不可欠な業務委託先（Google AdMob・Google ML Kit など）への提供</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>6. データの保存・削除</h2>
+    <p>
+      アプリが端末内に保存する画像・マーカー・学習履歴などのデータは、
+      アプリをアンインストールすることで完全に削除されます。
+      外部サーバーにはデータを保存しないため、開発者によるデータ削除申請の手続きは不要です。
+    </p>
+    <p>
+      なお、Android の自動バックアップ機能（Auto Backup）が端末・アカウントで有効になっている場合、
+      アプリデータが Google アカウントに紐づいた領域にバックアップされることがあります。
+      これは Android OS の標準機能であり、開発者がアクセスすることはできません。
+    </p>
+  </section>
+
+  <section>
+    <h2>7. 子どものプライバシー</h2>
+    <p>
+      本アプリは 13 歳未満のお子様を対象としていません。
+      13 歳未満のお子様から意図せず個人情報を収集していることが判明した場合は、
+      速やかに削除する措置を取ります。
+    </p>
+  </section>
+
+  <section>
+    <h2>8. セキュリティ</h2>
+    <p>
+      開発者はユーザーのデータを保護するための合理的な技術的・組織的対策を講じています。
+      ただし、インターネット上の通信やデジタルデータの保存は完全に安全であることを保証できないことをご了承ください。
+    </p>
+  </section>
+
+  <section>
+    <h2>9. プライバシーポリシーの変更</h2>
+    <p>
+      本ポリシーは必要に応じて改訂されることがあります。
+      重要な変更が生じた場合はアプリ内またはストアページでお知らせします。
+      変更後も本アプリを継続してご利用いただいた場合、改訂後のポリシーに同意したものとみなします。
+    </p>
+    <p>
+      最新のポリシーは常に本ページに掲載されます。
+    </p>
+  </section>
+
+  <section>
+    <h2>10. お問い合わせ</h2>
+    <p>
+      プライバシーポリシーに関するご質問・ご要望は、Google Play ストアのアプリページに記載のメールアドレスまでご連絡ください。
+    </p>
+  </section>
+
+</main>
+
+<footer>
+  <p>&copy; 2026 暗記マーカー (AnkiMarker) Developer. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
