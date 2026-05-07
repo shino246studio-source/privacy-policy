@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>暗記マーカー (AnkiMarker)</title>
+  <meta name="description" content="教科書を撮影してマーカーを引くだけで、自分専用の暗記カードができる Android アプリ。OCR・色分け・苦手復習・クラウド同期を備えた効率学習ツール。" />
+  <style>
+    /* ── base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #F7F4EE;
+      --surface:   #FBF9F4;
+      --border:    #D4C9B5;
+      --primary:   #1A8754;
+      --primary-d: #126B41;
+      --text:      #1D1F1A;
+      --subtext:   #4B4E46;
+      --green:     #5FC28A;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Helvetica Neue", "Hiragino Kaku Gothic ProN", "Hiragino Sans",
+                   "Yu Gothic", Meiryo, sans-serif;
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    /* ── header ── */
+    header {
+      background: var(--primary);
+      color: #fff;
+      padding: 56px 24px 48px;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: .03em;
+      margin-bottom: 8px;
+    }
+    header .tagline {
+      font-size: 1rem;
+      opacity: .9;
+      margin-top: 4px;
+    }
+    header .subtitle {
+      font-size: .85rem;
+      opacity: .8;
+      margin-top: 12px;
+      letter-spacing: .04em;
+    }
+
+    main {
+      max-width: 780px;
+      margin: 36px auto 60px;
+      padding: 0 24px;
+    }
+
+    /* ── intro card ── */
+    .intro {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin-bottom: 28px;
+    }
+    .intro p { margin-bottom: 12px; }
+    .intro p:last-child { margin-bottom: 0; }
+
+    /* ── features ── */
+    h2 {
+      font-size: 1.2rem;
+      color: var(--primary-d);
+      margin: 32px 0 16px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid var(--border);
+    }
+    .features {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    @media (min-width: 640px) {
+      .features { grid-template-columns: 1fr 1fr; }
+    }
+    .feature {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 20px;
+    }
+    .feature h3 {
+      font-size: 1rem;
+      color: var(--primary-d);
+      margin-bottom: 6px;
+    }
+    .feature p {
+      font-size: .9rem;
+      color: var(--subtext);
+      line-height: 1.65;
+    }
+
+    /* ── links ── */
+    .link-list {
+      list-style: none;
+      margin-top: 8px;
+    }
+    .link-list li {
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .link-list li:last-child { border-bottom: none; }
+    .link-list a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .link-list a:hover { text-decoration: underline; }
+    .link-list .arrow {
+      float: right;
+      color: var(--subtext);
+      font-size: .85rem;
+    }
+
+    /* ── contact ── */
+    .contact {
+      margin-top: 32px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 24px;
+      text-align: center;
+    }
+    .contact a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+    .contact a:hover { text-decoration: underline; }
+
+    /* ── footer ── */
+    footer {
+      text-align: center;
+      padding: 28px 24px;
+      font-size: .8rem;
+      color: var(--subtext);
+      border-top: 1px solid var(--border);
+      letter-spacing: .03em;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>暗記マーカー</h1>
+  <p class="tagline">AnkiMarker</p>
+  <p class="subtitle">教科書を撮って、マーカーを引いて、繰り返す。</p>
+</header>
+
+<main>
+
+  <section class="intro">
+    <p><strong>暗記マーカー</strong> は、教科書やノートを撮影して、覚えたい部分にマーカーを引くだけで自分専用の暗記カードが作れる Android 用学習アプリです。</p>
+    <p>カメラまたは画像ファイルから取り込んだ教材は OCR で自動的に文字認識され、タップやなぞりだけで重要箇所を 4 色のマーカーでハイライトできます。学習モードではマーカー部分が隠され、自己採点で苦手箇所を絞り込んで効率的に復習できます。</p>
+  </section>
+
+  <h2>主な機能</h2>
+  <div class="features">
+    <div class="feature">
+      <h3>カメラ・画像取り込み</h3>
+      <p>教科書をその場で撮影、もしくは画像ファイル・PDF から取り込み。複数ページの一括取り込みにも対応。</p>
+    </div>
+    <div class="feature">
+      <h3>OCR 自動認識</h3>
+      <p>日本語・英語・中国語・韓国語・デーヴァナーガリー文字に対応。認識した単語をタップするだけでマーカーを引けます。</p>
+    </div>
+    <div class="feature">
+      <h3>4 色のマーカー</h3>
+      <p>緑・赤・青・黄の 4 色で覚えたい内容を分類。ペン / 消しゴムで細かく範囲調整も可能。</p>
+    </div>
+    <div class="feature">
+      <h3>苦手だけ復習</h3>
+      <p>直近 5 回の解答履歴から苦手な問題を自動抽出。間違えた問題だけを集中的に復習できます。</p>
+    </div>
+    <div class="feature">
+      <h3>学習レポート</h3>
+      <p>書籍ごとの正解率・累計回答数・ページ別の進捗を可視化。学習の振り返りに役立ちます。</p>
+    </div>
+    <div class="feature">
+      <h3>クラウド同期</h3>
+      <p>Google ドライブの非公開領域にデータを保存。複数の端末でデータを共有・復元できます (プレミアム機能)。</p>
+    </div>
+  </div>
+
+  <h2>関連リンク</h2>
+  <ul class="link-list">
+    <li>
+      <a href="https://shino246studio-source.github.io/privacy-policy/AnkiMarker/">
+        プライバシーポリシー
+      </a>
+      <span class="arrow">→</span>
+    </li>
+  </ul>
+
+  <div class="contact">
+    <p>お問い合わせ: <a href="mailto:takayuured@yahoo.co.jp">takayuured@yahoo.co.jp</a></p>
+  </div>
+
+</main>
+
+<footer>
+  © 2025 shino246 studio &nbsp;·&nbsp; 暗記マーカー (AnkiMarker)
+</footer>
+
+</body>
+</html>
